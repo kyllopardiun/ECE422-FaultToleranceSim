@@ -19,7 +19,7 @@ import ece422.utils.Random;
  * @author mansueli
  */
 public class HeapSort extends Sort {
-
+    
     /**
      *
      * @param hazard the hazard specified for the HeapSort &gt; 0 and &lt; 1
@@ -27,7 +27,7 @@ public class HeapSort extends Sort {
     public HeapSort(double hazard) {
         super.setHazard(hazard);
     }
-
+    private int memoryAccess=0;
     @Override
     public void run() {
         try {
@@ -38,7 +38,7 @@ public class HeapSort extends Sort {
                 if (super.getHazard() > 0.5) {
                     //Handles both numbers bigger than 0.5 and negative values
                     super.setHazard(Math.log(Math.abs(super.getHazard())) * 0.05);
-                    System.out.println("Hazard Value is invalid, redefining it to:");
+                    System.out.println("Hazard Value is invalid, redefining it to:" + super.getHazard());
                 }
                 double random = Random.getRand();
                 if (random > 0.5
@@ -105,6 +105,7 @@ public class HeapSort extends Sort {
     public void heapify(int[] array, int first, int last) {
         int parent = first;
         while (((parent * 2) + 1) <= last) {
+            memoryAccess++;
             int leaf = (parent * 2) + 1;
             if (leaf + 1 <= last && array[leaf] < array[leaf + 1]) {
                 leaf++;

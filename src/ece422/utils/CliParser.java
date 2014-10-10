@@ -50,8 +50,10 @@ public class CliParser {
         options.addOption("i", "input", true, "Specifies the output file (Default = input.txt).");
         options.addOption("o", "output", true, "Specifies the output file (Default = output.txt).");
     }
+
     /**
-     *  Parsing method, which verify the inputs or terminate the program before continuing in the main program.
+     * Parsing method, which verify the inputs or terminate the program before
+     * continuing in the main program.
      */
     public void parse() {
         CommandLineParser parser = new BasicParser();
@@ -63,7 +65,13 @@ public class CliParser {
                 help();
             } else {
                 jHazard = cmd.hasOption("j") ? Double.parseDouble(cmd.getOptionValue("j")) : 0.15;
+                if (jHazard > 0.5) {
+                    throw new ParseException("Invalid jHazard value.\n Hazard values must be between 0.0 and 0.5\n");
+                }
                 cHazard = cmd.hasOption("c") ? Double.parseDouble(cmd.getOptionValue("c")) : 0.11;
+                if (cHazard > 0.5) {
+                    throw new ParseException("Invalid cHazard value.\n Hazard values must be between 0.0 and 0.5\n");
+                }
                 time = cmd.hasOption("t") ? Math.abs(Integer.parseInt(cmd.getOptionValue("t"))) : 6;
                 input = new File(cmd.hasOption("i") ? cmd.getOptionValue("i") : "input.txt");
                 output = new File(cmd.hasOption("o") ? cmd.getOptionValue("o") : "output.txt");
@@ -72,7 +80,7 @@ public class CliParser {
                 }
                 if (output.exists()) {
                     throw new Exception("File already exists : " + output.getName());
-                }else{
+                } else {
                     output.createNewFile();
                 }
             }
@@ -92,7 +100,7 @@ public class CliParser {
         formater.printHelp("Main", options);
         System.exit(0);
     }
-    
+
     public File getInput() {
         return input;
     }

@@ -76,7 +76,7 @@ public class InsertionSort extends Sort {
                 if (super.getHazard() > 0.5) {
                     //Handles both numbers bigger than 0.5 and negative values
                     super.setHazard(Math.log(Math.abs(super.getHazard())) * 0.05);
-                    System.out.println("Hazard Value is invalid, redefining it to:");
+                    System.out.println("Hazard Value is invalid, redefining it to:" + super.getHazard());
                 }
                 double random = Random.getRand();
                 if (random > 0.5

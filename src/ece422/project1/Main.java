@@ -32,10 +32,11 @@ public class Main {
     private static File output;
     private static double cHazard, jHazard;
     private static int time;
-/**
- * 
- * @param args command line arguments
- */
+
+    /**
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         CliParser parser = new CliParser(args);
         parser.parse();
@@ -68,6 +69,7 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
         }
         if (succedded) {
+            System.out.println("HeapSort succedded");
             FileUtils.saveFile(output, sorter.getArray());
         } else {
             try {
@@ -83,6 +85,7 @@ public class Main {
                 t.cancel();
                 succedded = Adjucator.verify(sorter.getArray());
                 if (succedded) {
+                    System.out.println("InsertionSort succedded");
                     FileUtils.saveFile(output, sorter.getArray());
                 } else {
                     System.out.println("An error occurred in the Backup method, the system failed.");
