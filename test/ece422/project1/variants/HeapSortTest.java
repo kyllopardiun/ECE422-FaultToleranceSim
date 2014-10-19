@@ -12,7 +12,7 @@
  */
 package ece422.project1.variants;
 
-
+import ece422.project1.AcceptanceTest;
 import ece422.project1.Adjucator;
 import java.util.Random;
 import org.junit.Test;
@@ -23,22 +23,25 @@ import static org.junit.Assert.*;
  * @author mansueli
  */
 public class HeapSortTest {
-    
+
     /**
-     * Test of doSort method, of class HeapSort.
-     * Tests just the sorting procedure without considering threads.
+     * Test of doSort method, of class HeapSort. Tests just the sorting
+     * procedure without considering threads.
      */
     @Test
     public void testDoSort() {
         System.out.println("HeapdoSort");
         int[] array = new int[200];
         Random rand = new Random();
-        for(int i: array) i = rand.nextInt();
+        Adjucator adj = new AcceptanceTest();
+        for (int i : array) {
+            i = rand.nextInt();
+        }
         HeapSort instance = new HeapSort(0.0);
         instance.setArray(array);
         instance.doSort();
-        boolean result = Adjucator.verify(instance.getArray());
+        boolean result = adj.verify(instance.getArray());
         assertEquals(true, result);
     }
- 
+
 }

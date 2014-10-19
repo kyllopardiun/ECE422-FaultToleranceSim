@@ -14,9 +14,7 @@ package ece422.project1.variants;
 
 import ece422.utils.FileUtils;
 import ece422.utils.Random;
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *

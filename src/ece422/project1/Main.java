@@ -18,6 +18,7 @@ import ece422.project1.variants.InsertionSort;
 import ece422.project1.variants.Sort;
 import ece422.utils.FileUtils;
 import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,7 @@ public class Main {
         int[] inputArray = null;
         try {
             inputArray = FileUtils.file2Array(input);
-        } catch (Exception e) {
+        } catch (IOException e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
         }
         output = parser.getOutput();
@@ -53,10 +54,10 @@ public class Main {
         jHazard = parser.getjHazard();
         Sort sorter = null;
         boolean succedded = false;
+        Adjucator adj = new AcceptanceTest();
         try {
             sorter = new HeapSort(jHazard);
             sorter.setArray(inputArray);
-            Adjucator adj = new Adjucator();
             Timer t = new Timer();
             WatchDogTimer dog = new WatchDogTimer(sorter);
             System.out.println("Started the HeapSort");
@@ -64,8 +65,8 @@ public class Main {
             sorter.start();
             sorter.join();
             t.cancel();
-            succedded = Adjucator.verify(sorter.getArray());
-        } catch (Exception e) {
+            succedded = adj.verify(sorter.getArray());
+        } catch (InterruptedException e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
         }
         if (succedded) {
@@ -76,21 +77,20 @@ public class Main {
                 System.out.println("Started the InsertionSort");
                 sorter = new InsertionSort(cHazard);
                 sorter.setArray(inputArray);
-                Adjucator adj = new Adjucator();
                 Timer t = new Timer();
                 WatchDogTimer dog = new WatchDogTimer(sorter);
                 t.schedule(dog, 1000);
                 sorter.start();
                 sorter.join();
                 t.cancel();
-                succedded = Adjucator.verify(sorter.getArray());
+                succedded = adj.verify(sorter.getArray());
                 if (succedded) {
                     System.out.println("InsertionSort succedded");
                     FileUtils.saveFile(output, sorter.getArray());
                 } else {
                     System.out.println("An error occurred in the Backup method, the system failed.");
                 }
-            } catch (Exception e) {
+            } catch (InterruptedException e) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
             }
         }

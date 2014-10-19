@@ -16,22 +16,6 @@ package ece422.project1;
  *
  * @author mansueli
  */
-public class Adjucator {
-
-    /**
-     *
-     * @param array to be verified
-     * @return whether it passed the Acceptance Test
-     */
-    public static boolean verify(int[] array){
-        if(array == null) return false;
-        int aux = -Integer.MAX_VALUE;
-        for(int i: array){
-            if(i>=aux)
-                aux = i;
-            else
-                return false;
-        }
-        return true;
-    }
+public interface Adjucator {
+    public abstract boolean verify(int[] array);
 }
