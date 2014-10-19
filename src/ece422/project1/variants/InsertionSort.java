@@ -14,6 +14,8 @@ package ece422.project1.variants;
 
 import ece422.utils.FileUtils;
 import ece422.utils.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author mansueli
@@ -42,7 +44,7 @@ public class InsertionSort extends Sort {
                 }
             }
         } catch (Exception ex) {
-           //Logger.getLogger(InsertionSort.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(InsertionSort.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         try {
