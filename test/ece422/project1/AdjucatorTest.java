@@ -30,9 +30,10 @@ public class AdjucatorTest {
         int[] arrayTrue = {-21,-10,2,12,20,21,21,25,27};
         boolean expResultFalse = false;
         boolean expResultTrue = true;
-        boolean result = Adjucator.verify(arrayFalse);
+        Adjucator adj = new AcceptanceTest();
+        boolean result = adj.verify(arrayFalse);
         assertEquals(expResultFalse, result);
-        result = Adjucator.verify(arrayTrue);
+        result = adj.verify(arrayTrue);
         assertEquals(expResultTrue, result);
     }
     

@@ -14,7 +14,6 @@ package ece422.project1.variants;
 
 import ece422.utils.FileUtils;
 import ece422.utils.Random;
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,19 +34,20 @@ public class InsertionSort extends Sort {
 
     static {
         String os = System.getProperty("os.name");
-        /*   try {
-         if (os.startsWith("Wind")) {
-         FileUtils.loadLibrary("/ece422/project1/variants/libInsertSort.dll");
-         } else {
-         if (os.contains("OS X")) {
-         System.out.println("System not supported yet");
-         } else {
-         FileUtils.loadLibrary("/ece422/project1/variants/libInsertSort.so");
-         }
-         }
-         } catch (Exception ex) {
-         Logger.getLogger(InsertionSort.class.getName()).log(Level.SEVERE, null, ex);
-         }*/
+        try {
+            if (os.startsWith("Wind")) {
+                FileUtils.loadLibrary("/ece422/project1/variants/libInsertSort.dll");
+            } else {
+                if (os.contains("OS X")) {
+                    System.out.println("System not supported yet");
+                } else {
+                    FileUtils.loadLibrary("/ece422/project1/variants/libInsertSort.so");
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(InsertionSort.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
         try {
             FileUtils.loadLibrary("/ece422/project1/variants/libInsertSort.so");
         } catch (Exception ep) {
@@ -101,7 +101,7 @@ public class InsertionSort extends Sort {
      * A public wrapper for the C code
      */
     public void doSort() {
-        int[] array=sort(super.getArray());
+        int[] array = sort(super.getArray());
         super.setArray(array);
     }
 }

@@ -12,6 +12,7 @@
  */
 package ece422.project1.variants;
 
+import ece422.project1.AcceptanceTest;
 import ece422.project1.Adjucator;
 import ece422.project1.Main;
 import ece422.project1.WatchDogTimer;
@@ -30,7 +31,7 @@ import static org.junit.Assert.*;
  * @author mansueli
  */
 public class InsertionSortIntegrationTest {
-    
+
     /**
      * Test of run method, of class InsertionSort.
      */
@@ -45,19 +46,19 @@ public class InsertionSortIntegrationTest {
         try {
             sorter = new InsertionSort(cHazard);
             sorter.setArray(inputArray);
-            Adjucator adj = new Adjucator();
+            Adjucator adj = new AcceptanceTest();
             Timer t = new Timer();
             WatchDogTimer dog = new WatchDogTimer(sorter);
             t.schedule(dog, time);
             sorter.start();
             sorter.join();
             t.cancel();
-            succedded = Adjucator.verify(sorter.getArray());
-            assertEquals(succedded,true);
+            succedded = adj.verify(sorter.getArray());
+            assertEquals(succedded, true);
         } catch (Exception e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
             fail("Exception" + e);
         }
     }
-    
+
 }

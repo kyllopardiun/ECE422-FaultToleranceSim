@@ -79,7 +79,7 @@ public class HeapSort extends Sort {
      * @param i position of the first element
      * @param j position of the last element
      */
-    public void swap(int[] array, int i, int j) {
+    private void swap(int[] array, int i, int j) {
         int temp = array[j];
         array[j] = array[i];
         array[i] = temp;
@@ -90,7 +90,7 @@ public class HeapSort extends Sort {
      * @param array the array being used in the heapSort
      * @param num last position of this heap
      */
-    public void buildHeap(int[] array, int num) {
+    private void buildHeap(int[] array, int num) {
         int start = (num - 2) / 2;
         while (start >= 0) {
             heapify(array, start, num - 1);
@@ -102,7 +102,7 @@ public class HeapSort extends Sort {
      * @param first first element of the heap
      * @param last last element of the heap
      */
-    public void heapify(int[] array, int first, int last) {
+     private void heapify(int[] array, int first, int last) {
         int parent = first;
         while (((parent * 2) + 1) <= last) {
             memoryAccess++;
@@ -121,5 +121,5 @@ public class HeapSort extends Sort {
     /**
      * Just to avoid warnings
      */
-    private void errorMethod() {}
+     private void errorMethod() {}
 }
