@@ -45,7 +45,7 @@ public class InsertionSort extends Sort {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(InsertionSort.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(InsertionSort.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         try {
