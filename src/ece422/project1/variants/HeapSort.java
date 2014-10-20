@@ -49,6 +49,7 @@ public class HeapSort extends Sort {
                         errorMethod();
                     }
                 }
+                System.out.println("\tMemory accesses occured in InsertionSort:" + memoryAccess);
             }
         } catch (ThreadDeath e) {
             System.out.println("HeapSort Thread Failed");
@@ -59,8 +60,8 @@ public class HeapSort extends Sort {
      /**
      * Based on the description on the document below: <br>
      * Stefanes, Marco Aurélio.<br>
-     * Available in: <a href="http://www.facom.ufms.br/~marco/aed22008/aula06_4.pdf">http://www.facom.ufms.br/~marco/aed22008/aula06_4.pdf</a>
-     *
+     * Available in: <a href="http://www.facom.ufms.br/~marco/aed22008/aula06_4.pdf">
+     * http://www.facom.ufms.br/~marco/aed22008/aula06_4.pdf</a>
      */
     public void doSort() {
         int aux = super.getArray().length;
@@ -83,6 +84,7 @@ public class HeapSort extends Sort {
         int temp = array[j];
         array[j] = array[i];
         array[i] = temp;
+        memoryAccess+=2;
     }
 
     /**
